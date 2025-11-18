@@ -1,0 +1,10 @@
+import numpy as np
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Input, Dense
+
+X = np.array([[1,2],[2,3],[1,1],[10,10]])  # last point is anomaly
+inp = Input(shape=(2,)); enc = Dense(1, activation='relu')(inp); dec = Dense(2)(enc)
+auto = Model(inp, dec); auto.compile('adam','mse'); auto.fit(X,X,epochs=50,verbose=0)
+mse = np.mean(np.power(X - auto.predict(X),2),axis=1)
+y_pred = (mse>5).astype(int)
+print("Task3: Anomaly Labels", y_pred)
