@@ -1,0 +1,12 @@
+# Simulate federated learning with 2 clients
+from sklearn.ensemble import RandomForestClassifier
+import numpy as np
+
+X1 = [[1,0],[0,1]]; y1=[0,1]
+X2 = [[1,1],[0,0]]; y2=[1,0]
+clf1 = RandomForestClassifier().fit(X1,y1)
+clf2 = RandomForestClassifier().fit(X2,y2)
+# Aggregate predictions (federated)
+X_test=[[1,0],[0,1]]
+pred = np.round((clf1.predict(X_test)+clf2.predict(X_test))/2)
+print("Task13: Federated IDS Prediction", pred)
