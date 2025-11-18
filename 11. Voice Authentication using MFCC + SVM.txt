@@ -1,0 +1,7 @@
+import numpy as np
+from sklearn.svm import SVC
+
+X = np.random.rand(4,13)  # MFCC features
+y = [0,0,1,1]
+clf = SVC().fit(X,y)
+print("Task11: Voice Auth Prediction", clf.predict([X[0]]))
