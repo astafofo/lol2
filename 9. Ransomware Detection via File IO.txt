@@ -1,0 +1,21 @@
+# Task 9: Ransomware Detection based on file system activity
+# Features: [read_ops, write_ops]
+
+X = [
+    [5, 1],    # normal
+    [50, 40],  # potential ransomware
+    [4, 1],    # normal
+    [30, 25]   # suspicious
+]
+
+y_pred = []  # store predicted labels: 0=normal, 1=ransomware
+read_threshold = 20
+write_threshold = 20
+
+for read_ops, write_ops in X:
+    if read_ops > read_threshold or write_ops > write_threshold:
+        y_pred.append(1)  # flagged as ransomware
+    else:
+        y_pred.append(0)  # normal activity
+
+print("Task9: Ransomware Labels:", y_pred)
