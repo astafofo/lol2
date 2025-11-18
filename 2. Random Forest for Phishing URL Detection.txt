@@ -1,0 +1,9 @@
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report
+
+X = [[1,0],[0,1],[1,1],[0,0]]  # [has_ssl, suspicious_length]
+y = [0,1,1,0]  # 0=legit, 1=phishing
+
+clf = RandomForestClassifier(n_estimators=10, random_state=42)
+clf.fit(X,y)
+print("Task2: RF Predictions", clf.predict([[1,1]]))
