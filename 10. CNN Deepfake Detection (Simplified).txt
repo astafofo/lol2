@@ -1,0 +1,9 @@
+import numpy as np
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, Flatten, Dense
+
+X = np.random.rand(2,64,64,3)
+y = [0,1]
+model = Sequential([Conv2D(4,(3,3),activation='relu',input_shape=(64,64,3)),Flatten(),Dense(2,activation='softmax')])
+model.compile('adam','sparse_categorical_crossentropy'); model.fit(X,y,epochs=2,verbose=0)
+print("Task10: Deepfake model trained")
