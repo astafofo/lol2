@@ -1,0 +1,9 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+
+payloads = ["SELECT * FROM users","<script>alert(1)</script>","Hello world"]
+y = [0,1,0]
+vec = TfidfVectorizer()
+X = vec.fit_transform(payloads)
+clf = LogisticRegression().fit(X,y)
+print("Task12: Payload Prediction", clf.predict(vec.transform(["<script>"])))
