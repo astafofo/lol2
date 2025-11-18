@@ -1,0 +1,21 @@
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import classification_report
+import numpy as np
+
+# Sample SMS data
+sms = ["Free entry! Win $1000 now", "Hey, how are you?", 
+       "Claim your prize today!", "Let's meet tomorrow"]
+y = [1, 0, 1, 0]  # 1=spam, 0=ham
+
+# Vectorize text (ignore stopwords & punctuation improves accuracy)
+vec = CountVectorizer(stop_words='english')
+X = vec.fit_transform(sms).toarray()
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=42)
+gnb = GaussianNB()
+gnb.fit(X_train, y_train)
+y_pred = gnb.predict(X_test)
+
+print("Task1: SMS Spam Report\n", classification_report(y_test, y_pred))
