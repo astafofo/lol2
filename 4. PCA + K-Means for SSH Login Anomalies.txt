@@ -1,0 +1,8 @@
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+import numpy as np
+
+X = np.array([[1,2,1],[2,1,2],[10,10,10],[11,12,10]])  # last two are abnormal
+X_pca = PCA(n_components=2).fit_transform(X)
+kmeans = KMeans(n_clusters=2, random_state=42).fit(X_pca)
+print("Task4: Clusters", kmeans.labels_)
