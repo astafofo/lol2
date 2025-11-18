@@ -1,0 +1,10 @@
+from transformers import BertTokenizer, TFBertForSequenceClassification
+import tensorflow as tf
+
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = TFBertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=2)
+
+text = ["Your account is compromised, click link"]
+inputs = tokenizer(text, return_tensors='tf', padding=True)
+logits = model(inputs)[0]
+print("Task7: BERT phishing logits", tf.nn.softmax(logits,axis=1))
