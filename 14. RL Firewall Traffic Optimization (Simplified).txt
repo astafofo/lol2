@@ -1,0 +1,10 @@
+# Q-learning style reward simulation
+import numpy as np
+actions = [0,1]  # 0=allow,1=block
+rewards = [10,-10]  # reward if allow safe / penalty if block safe
+q_values = [0,0]
+for i in range(5):
+    a = np.argmax(q_values)
+    r = rewards[a]
+    q_values[a] += 0.1*(r - q_values[a])
+print("Task14: Optimized Q-values", q_values)
